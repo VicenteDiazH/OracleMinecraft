@@ -1,0 +1,40 @@
+# ─── Terraform ───────────────────────────────────────────────
+# Carpeta donde terraform init descarga providers y módulos (se regenera)
+.terraform/
+# El state: mapea tu código con los recursos reales. Puede tener datos sensibles.
+*.tfstate
+*.tfstate.*
+# Archivos de crash y overrides locales
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+# Planes guardados con "terraform plan -out" (contienen valores en claro)
+*.tfplan
+# Variables con OCIDs y rutas a llaves: NO se suben...
+*.tfvars
+*.tfvars.json
+# ...excepto la plantilla de ejemplo
+!*.tfvars.example
+# OJO: .terraform.lock.hcl SÍ se sube (fija versiones de providers)
+
+# ─── Llaves y credenciales ───────────────────────────────────
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+.oci/
+
+# ─── Docker / Minecraft ──────────────────────────────────────
+# Configuración real del juego (RCON password, etc.). Se sube .env.example
+docker/.env
+# Mundos y backups: pesan GB y no son código
+data/
+backups/
+
+# ─── Sistema operativo / editores ────────────────────────────
+.DS_Store
+.vscode/
+.idea/
