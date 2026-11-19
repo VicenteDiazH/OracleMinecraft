@@ -52,7 +52,17 @@ resource "oci_core_security_list" "public" {
     }
   }
 
-  # TODO(tú): regla de entrada para Minecraft, TCP 25565, desde cualquier IP.
+  # Minecraft: abierto a todo internet (los jugadores se conectan desde cualquier IP)
+  ingress_security_rules {
+    description = "Minecraft Java"
+    source      = "0.0.0.0/0"
+    protocol    = "6"
+
+    tcp_options {
+      min = 25565
+      max = 25565
+    }
+  }
 
   # ICMP tipo 3 código 4 ("fragmentation needed"): necesario para Path MTU Discovery.
   # Sin esto, algunas conexiones se cuelgan con paquetes grandes. OCI lo trae por defecto.
